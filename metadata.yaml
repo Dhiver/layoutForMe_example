@@ -1,0 +1,20 @@
+lang: fr-FR
+dateLayout: "02/01/2006"
+
+title: Bonjour tout le monde !
+author:
+    - John Smith
+    - Foo Bar
+
+abstract:
+date:
+version:
+
+includeOrder:
+    - intro.md
+    - conclusion.md
+
+output:
+    - name: mon_document
+      extention: pdf
+      template: article.tex.tmpl

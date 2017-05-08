@@ -1,0 +1,47 @@
+\documentclass[{{if .FontSize}}{{.FontSize}},{{end}}{{if .PaperSize}}{{.PaperSize}},{{end}}]{ {{- if .DocumentClass -}}{{.DocumentClass}}{{- else}}article{{- end -}} }
+
+\usepackage[utf8x]{inputenc}
+
+\usepackage[T1]{fontenc}
+
+\title{ {{- .Title -}}}
+\date{ {{- if .Date -}}{{.Date}}{{- else}}\today{{- end -}} }
+
+\begin{document}
+\pagenumbering{gobble}% Remove page numbers (and reset to 1)
+
+{{if .Title -}}
+	\begin{center}
+	\Huge
+	\textbf{ {{- .Title -}} }\\
+	\vspace{0.7cm}
+	\Large
+	\textbf{ {{- Join .Author ", " -}} }\\
+	\vspace{0.3cm}
+	\small
+	{{.Date}}
+	\vspace{0.3cm}
+	{{if .Abstract -}}\begin{abstract}{{.Abstract}}\end{abstract}{{- end}}
+	\end{center}
+{{- end}}
+
+\begin{center}
+\noindent\rule{4cm}{0.4pt} % Draw a line
+\end{center}
+
+{{if .Versions -}}
+	{{- T "document_version" (len .Versions) -}} :
+	\begin{itemize}
+	{{range .Versions -}}
+		\item {{.Number}} - {{.Date}} - {{.Author}} - {{.Log}}
+	{{end -}}
+	\end{itemize}
+{{- end}}
+
+\begin{center}
+\noindent\rule{4cm}{0.4pt} % Draw a line
+\end{center}
+
+$body$ % Markdown content will be inserted here
+
+\end{document}
